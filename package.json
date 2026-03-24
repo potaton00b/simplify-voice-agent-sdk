@@ -1,0 +1,54 @@
+{
+  "name": "voice-agent-sdk",
+  "version": "0.1.0",
+  "description": "Lightweight TypeScript SDK for building Twilio voice agents with swappable STT and TTS providers",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts --format esm,cjs --dts",
+    "dev": "tsup src/index.ts --format esm,cjs --dts --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "twilio",
+    "voice-agent",
+    "stt",
+    "tts",
+    "deepgram",
+    "elevenlabs",
+    "fastify",
+    "typescript"
+  ],
+  "peerDependencies": {
+    "@fastify/websocket": ">=7.0.0",
+    "fastify": ">=4.0.0",
+    "ws": ">=8.0.0"
+  },
+  "dependencies": {
+    "@deepgram/sdk": "^3.9.0"
+  },
+  "devDependencies": {
+    "@fastify/formbody": "^7.4.0",
+    "@fastify/websocket": "^11.0.0",
+    "@types/node": "^20.0.0",
+    "@types/ws": "^8.0.0",
+    "fastify": "^5.0.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.0.0",
+    "vitest": "^1.0.0",
+    "ws": "^8.0.0"
+  }
+}
