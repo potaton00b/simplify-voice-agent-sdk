@@ -1,0 +1,25 @@
+node_modules/
+dist/
+
+# Environment variables — never commit these
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+
+# Examples — not part of the SDK package
+examples/
+
+# Claude
+.claude/
