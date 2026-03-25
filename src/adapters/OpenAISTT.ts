@@ -72,7 +72,7 @@ export class OpenAISTT implements STTProvider {
             input_audio_format: 'pcm16',
             input_audio_transcription: {
               model,
-              language,
+              ...(language ? { language } : {}),
             },
             turn_detection: {
               type: 'server_vad',
