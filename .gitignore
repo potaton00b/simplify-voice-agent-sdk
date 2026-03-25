@@ -21,5 +21,8 @@ Thumbs.db
 # Examples — not part of the SDK package
 examples/
 
+# Tests — not part of the published SDK
+tests/
+
 # Claude
 .claude/
