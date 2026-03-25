@@ -69,6 +69,7 @@ export class VoiceAgent {
         isCollectingDtmf: false,
         dtmfBuffer: '',
         sttConnection: null,
+        pendingFlush: false,
       };
 
       // -----------------------------------------------------------------------
@@ -146,6 +147,14 @@ export class VoiceAgent {
         if (!state.isCollectingDtmf) {
           state.transcriptBuffer += ' ' + transcript;
           console.log('[VoiceAgent] Buffer:', state.transcriptBuffer.trim());
+
+          if (state.pendingFlush) {
+            state.pendingFlush = false;
+            const utterance = state.transcriptBuffer.trim();
+            state.transcriptBuffer = '';
+            console.log('[VoiceAgent] Pending # — sending to LLM:', utterance);
+            runLlm(utterance);
+          }
         }
       });
 
@@ -215,7 +224,8 @@ function handleDtmf(
       state.transcriptBuffer = '';
 
       if (!utterance) {
-        console.log('[VoiceAgent] # pressed but buffer was empty — ignoring');
+        console.log('[VoiceAgent] # pressed but buffer was empty — waiting for transcript');
+        state.pendingFlush = true;
         return;
       }
 
