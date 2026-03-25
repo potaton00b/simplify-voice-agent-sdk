@@ -10,6 +10,8 @@ export { DeepgramSTT } from './adapters/DeepgramSTT.js';
 export { OpenAISTT } from './adapters/OpenAISTT.js';
 export { CartesiaSTT } from './adapters/CartesiaSTT.js';
 export { ElevenLabsTTS } from './adapters/ElevenLabsTTS.js';
+export { CartesiaTTS } from './adapters/CartesiaTTS.js';
+export { DeepgramTTS } from './adapters/DeepgramTTS.js';
 
 // Types — everything needed to implement a custom adapter or extend the SDK
 export type {
@@ -27,3 +29,5 @@ export type { DeepgramSTTConfig } from './adapters/DeepgramSTT.js';
 export type { OpenAISTTConfig } from './adapters/OpenAISTT.js';
 export type { CartesiaSTTConfig } from './adapters/CartesiaSTT.js';
 export type { ElevenLabsTTSConfig } from './adapters/ElevenLabsTTS.js';
+export type { CartesiaTTSConfig } from './adapters/CartesiaTTS.js';
+export type { DeepgramTTSConfig } from './adapters/DeepgramTTS.js';
