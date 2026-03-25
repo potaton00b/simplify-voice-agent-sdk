@@ -182,6 +182,8 @@ export interface CallState {
   isCollectingDtmf: boolean;
   dtmfBuffer: string;
   sttConnection: STTConnection | null;
+  /** True when # was pressed before the transcript arrived (e.g. slow STT). */
+  pendingFlush: boolean;
 }
 
 // Re-export Fastify/ws types used by VoiceAgent's public method signatures
