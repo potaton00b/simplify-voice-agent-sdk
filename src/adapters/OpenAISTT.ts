@@ -163,16 +163,16 @@ function decodeMulaw(mulaw: Buffer): Int16Array {
   const pcm = new Int16Array(mulaw.length);
   for (let i = 0; i < mulaw.length; i++) {
     // Invert all bits (μ-law encoding inverts)
-    let byte = (~mulaw[i]) & 0xFF;
+    const byte = (~mulaw[i]) & 0xFF;
     const sign     = byte & 0x80;
     const exponent = (byte >> 4) & 0x07;
     const mantissa = byte & 0x0F;
 
-    // Reconstruct magnitude: (mantissa << 1 | 1) << (exponent + 2), then subtract bias
-    let sample = ((mantissa << 1) | 1) << (exponent + 2);
-    sample -= 33; // bias
+    // ITU-T G.711 μ-law decode: t = (mantissa << 3 + 132) << exponent
+    let t = (mantissa << 3) + 132;
+    t <<= exponent;
 
-    pcm[i] = sign ? -sample : sample;
+    pcm[i] = sign ? (132 - t) : (t - 132);
   }
   return pcm;
 }
