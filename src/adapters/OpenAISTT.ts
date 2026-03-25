@@ -68,19 +68,21 @@ export class OpenAISTT implements STTProvider {
         // behaviour as Deepgram's speech_final events.
         ws.send(JSON.stringify({
           type: 'transcription_session.update',
-          input_audio_format: 'pcm16',
-          input_audio_transcription: {
-            model,
-            language,
-          },
-          turn_detection: {
-            type: 'server_vad',
-            threshold: 0.5,
-            prefix_padding_ms: 300,
-            silence_duration_ms: 500,
-          },
-          input_audio_noise_reduction: {
-            type: 'near_field',
+          session: {
+            input_audio_format: 'pcm16',
+            input_audio_transcription: {
+              model,
+              language,
+            },
+            turn_detection: {
+              type: 'server_vad',
+              threshold: 0.5,
+              prefix_padding_ms: 300,
+              silence_duration_ms: 500,
+            },
+            input_audio_noise_reduction: {
+              type: 'near_field',
+            },
           },
         }));
 
