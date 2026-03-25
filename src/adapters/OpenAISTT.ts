@@ -94,6 +94,8 @@ export class OpenAISTT implements STTProvider {
     ws.on('message', (data: Buffer) => {
       const msg = JSON.parse(data.toString()) as Record<string, unknown>;
 
+      console.log('[OpenAISTT] Event:', msg['type']);
+
       // completed: a full speech segment has been transcribed.
       // This is the equivalent of Deepgram's speech_final event.
       if (msg['type'] === 'conversation.item.input_audio_transcription.completed') {
